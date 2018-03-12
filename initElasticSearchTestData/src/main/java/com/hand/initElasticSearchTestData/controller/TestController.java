@@ -26,6 +26,7 @@ public class TestController {
                 elasticsearchProperties.getName(),
                 elasticsearchProperties.getIp(),
                 elasticsearchProperties.getPort(),
+                elasticsearchProperties.getExecuteNum(),
                 elasticsearchProperties.getIndexNum(),
                 elasticsearchProperties.getJsonNum());
 
