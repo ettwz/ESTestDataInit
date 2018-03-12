@@ -27,7 +27,7 @@ public class ElasticSearch {
 
         try {
             Settings settings = Settings.builder()
-                    .put("cluster.name", esClusterName)
+//                    .put("cluster.name", esClusterName)
                     .build();
 
             client = new PreBuiltTransportClient(settings);
