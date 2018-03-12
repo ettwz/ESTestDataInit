@@ -39,8 +39,8 @@ public class ElasticSearch {
                 client.addTransportAddress(new TransportAddress(InetAddress.getByName(ipArray[i]),
                         Integer.parseInt(portArray[i])));
 
-                BulkRequestBuilder bulkRequest = client.prepareBulk();
                 for (int x = 0; x < executeNum; x++) {
+                    BulkRequestBuilder bulkRequest = client.prepareBulk();
                     for (int z = 0; z < indexNum; z++) {
                         Integer zz = z;
                         for (int a = 0; a < jsonNum; a++) {
