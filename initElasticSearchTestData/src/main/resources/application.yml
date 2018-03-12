@@ -1,0 +1,5 @@
+es.name: docker-cluster
+es.ip: localhost
+es.port: 9300
+es.indexNum: 2500
+es.jsonNum: 70000
