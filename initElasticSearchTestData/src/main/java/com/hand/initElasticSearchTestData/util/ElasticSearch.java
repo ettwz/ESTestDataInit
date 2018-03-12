@@ -51,6 +51,7 @@ public class ElasticSearch {
                                     .setSource(json, XContentType.JSON);
                             bulkRequest.add(indexRequest);
                         }
+                        logger.debug(z);
                     }
                     BulkResponse bulkResponse = bulkRequest.execute().actionGet();
                     if (bulkResponse.hasFailures()) {
