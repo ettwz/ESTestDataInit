@@ -43,21 +43,21 @@ public class ElasticSearch {
                 for (int x = 0; x < executeNum; x++) {
                     BulkRequestBuilder bulkRequest = client.prepareBulk();
                     for (int z = 0; z < indexNum; z++) {
-                        Integer zz = z;
                         for (int a = 0; a < jsonNum; a++) {
                             Integer ii = a;
-                            String id = ii.toString();
                             String json = "{\"first_name\":\"John\",\"last_name\":\"Smith\",\"age\":25,\"about\":\"I love to go rock climbing\",\"interests\":[\"sports\",\"music\"]}";
-                            IndexRequestBuilder indexRequest = client.prepareIndex(zz.toString() + "-" + System.currentTimeMillis(), "test").setId(id)
+                            IndexRequestBuilder indexRequest = client.prepareIndex(x + "-" + z, "test").setId(x + "-" + z + "-" + a)
                                     .setSource(json, XContentType.JSON);
                             bulkRequest.add(indexRequest);
+                            logger.debug("a:" + a);
                         }
-                        logger.debug(z);
+                        logger.debug("z:" + z);
                     }
-                    BulkResponse bulkResponse = bulkRequest.execute().actionGet();
+                    BulkResponse bulkResponse = bulkRequest.get();
                     if (bulkResponse.hasFailures()) {
                         logger.error("error!!!");
                     }
+                    logger.debug("x:" + x);
                 }
             }
             client.close();
