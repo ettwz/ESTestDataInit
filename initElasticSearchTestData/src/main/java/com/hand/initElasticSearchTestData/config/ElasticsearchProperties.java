@@ -22,6 +22,9 @@ public class ElasticsearchProperties {
     @Value("${es.port}")
     private String port;
 
+    @Value("${es.executeNum}")
+    private Integer executeNum;
+
     @Value("${es.indexNum}")
     private Integer indexNum;
 
@@ -50,6 +53,14 @@ public class ElasticsearchProperties {
 
     public void setPort(String port) {
         this.port = port;
+    }
+
+    public Integer getExecuteNum() {
+        return executeNum;
+    }
+
+    public void setExecuteNum(Integer executeNum) {
+        this.executeNum = executeNum;
     }
 
     public Integer getIndexNum() {
