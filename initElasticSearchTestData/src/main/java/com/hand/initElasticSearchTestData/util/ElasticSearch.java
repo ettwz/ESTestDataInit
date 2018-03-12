@@ -49,15 +49,13 @@ public class ElasticSearch {
                             IndexRequestBuilder indexRequest = client.prepareIndex(x + "-" + z, "test").setId(x + "-" + z + "-" + a)
                                     .setSource(json, XContentType.JSON);
                             bulkRequest.add(indexRequest);
-                            logger.debug("a:" + a);
+                            logger.debug(x + "-" + z + "-" + a);
                         }
-                        logger.debug("z:" + z);
                     }
                     BulkResponse bulkResponse = bulkRequest.get();
                     if (bulkResponse.hasFailures()) {
                         logger.error("error!!!");
                     }
-                    logger.debug("x:" + x);
                 }
             }
             client.close();
