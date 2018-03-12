@@ -28,6 +28,7 @@ public class ElasticSearch {
         try {
             Settings settings = Settings.builder()
                     .put("cluster.name", esClusterName)
+                    .put("client.transport.sniff", true)
                     .build();
 
             client = new PreBuiltTransportClient(settings);
