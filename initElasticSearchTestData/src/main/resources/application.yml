@@ -3,4 +3,4 @@ es.ip: localhost
 es.port: 9300
 es.executeNum: 5
 es.indexNum: 10
-es.jsonNum: 70000
+es.jsonNum: 20000

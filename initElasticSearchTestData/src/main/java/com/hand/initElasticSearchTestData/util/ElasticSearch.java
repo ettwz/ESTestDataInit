@@ -47,7 +47,7 @@ public class ElasticSearch {
                             Integer ii = a;
                             String id = ii.toString();
                             String json = "{\"first_name\":\"John\",\"last_name\":\"Smith\",\"age\":25,\"about\":\"I love to go rock climbing\",\"interests\":[\"sports\",\"music\"]}";
-                            IndexRequestBuilder indexRequest = client.prepareIndex(zz.toString(), "test").setId(id)
+                            IndexRequestBuilder indexRequest = client.prepareIndex(zz.toString() + "-" + System.currentTimeMillis(), "test").setId(id)
                                     .setSource(json, XContentType.JSON);
                             bulkRequest.add(indexRequest);
                         }
