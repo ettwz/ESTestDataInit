@@ -40,7 +40,7 @@ public class ElasticSearch {
                         Integer.parseInt(portArray[i])));
                 for (int x = 0; x < executeNum; x++) {
                     BulkRequestBuilder bulkRequest = client.prepareBulk();
-                    bulkRequest.setTimeout("30000");
+                    bulkRequest.setTimeout("30s");
                     for (int z = 0; z < indexNum; z++) {
                         for (int a = 0; a < jsonNum; a++) {
                             String json = "{\"first_name\":\"John\",\"last_name\":\"Smith\",\"age\":25,\"about\":\"I love to go rock climbing\",\"interests\":[\"sports\",\"music\"]}";
