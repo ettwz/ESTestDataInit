@@ -24,27 +24,25 @@ public class ElasticSearch {
                                           Integer executeNum, Integer indexNum, Integer jsonNum) {
         Long startTime = System.currentTimeMillis();
         TransportClient client = null;
+        Settings settings = Settings.builder()
+                .put("cluster.name", esClusterName)
+                .put("client.transport.ping_timeout", "30s")
+                .put("client.transport.sniff", true)
+                .build();
+        String[] ipArray = esServerIp.split(",");
+        String[] portArray = esServerPort.split(",");
 
         try {
-            Settings settings = Settings.builder()
-                    .put("cluster.name", esClusterName)
-                    .put("client.transport.sniff", true)
-                    .build();
-
             client = new PreBuiltTransportClient(settings);
 
-            String[] ipArray = esServerIp.split(",");
-            String[] portArray = esServerPort.split(",");
             for (int i = 0; i < ipArray.length; i++) {
-
                 client.addTransportAddress(new TransportAddress(InetAddress.getByName(ipArray[i]),
                         Integer.parseInt(portArray[i])));
-
                 for (int x = 0; x < executeNum; x++) {
                     BulkRequestBuilder bulkRequest = client.prepareBulk();
+                    bulkRequest.setTimeout("30000");
                     for (int z = 0; z < indexNum; z++) {
                         for (int a = 0; a < jsonNum; a++) {
-                            Integer ii = a;
                             String json = "{\"first_name\":\"John\",\"last_name\":\"Smith\",\"age\":25,\"about\":\"I love to go rock climbing\",\"interests\":[\"sports\",\"music\"]}";
                             IndexRequestBuilder indexRequest = client.prepareIndex(x + "-" + z, "test").setId(x + "-" + z + "-" + a)
                                     .setSource(json, XContentType.JSON);

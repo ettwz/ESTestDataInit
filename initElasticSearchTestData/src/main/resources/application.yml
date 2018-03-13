@@ -1,6 +1,6 @@
 es.name: docker-cluster
 es.ip: localhost
 es.port: 9300
-es.executeNum: 25
-es.indexNum: 100
+es.executeNum: 100
+es.indexNum: 25
 es.jsonNum: 80000
