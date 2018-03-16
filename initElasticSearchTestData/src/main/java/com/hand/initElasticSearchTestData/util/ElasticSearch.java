@@ -44,7 +44,7 @@ public class ElasticSearch {
                     for (int z = 0; z < indexNum; z++) {
                         for (int a = 0; a < jsonNum; a++) {
                             String json = "{\"first_name\":\"John\",\"last_name\":\"Smith\",\"age\":25,\"about\":\"I love to go rock climbing\",\"interests\":[\"sports\",\"music\"]}";
-                            IndexRequestBuilder indexRequest = client.prepareIndex(x + "-" + z, "test").setId(x + "-" + z + "-" + a)
+                            IndexRequestBuilder indexRequest = client.prepareIndex("new" +x + "-" + z, "test").setId(x + "-" + z + "-" + a)
                                     .setSource(json, XContentType.JSON);
                             bulkRequest.add(indexRequest);
                             logger.debug(x + "-" + z + "-" + a);
