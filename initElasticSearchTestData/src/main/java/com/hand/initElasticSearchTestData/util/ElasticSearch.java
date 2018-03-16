@@ -21,7 +21,7 @@ public class ElasticSearch {
     private static Logger logger = LogManager.getLogger(ElasticSearch.class);
 
     public static void getTransPortClient(String esClusterName, String esServerIp, String esServerPort,
-                                          Integer executeNum, Integer indexNum, Integer jsonNum) {
+                                          Integer executeNum, Integer indexNum, Integer jsonNum, String indexName) {
         Long startTime = System.currentTimeMillis();
         TransportClient client = null;
         Settings settings = Settings.builder()
@@ -44,10 +44,10 @@ public class ElasticSearch {
                     for (int z = 0; z < indexNum; z++) {
                         for (int a = 0; a < jsonNum; a++) {
                             String json = "{\"first_name\":\"John\",\"last_name\":\"Smith\",\"age\":25,\"about\":\"I love to go rock climbing\",\"interests\":[\"sports\",\"music\"]}";
-                            IndexRequestBuilder indexRequest = client.prepareIndex("new" +x + "-" + z, "test").setId(x + "-" + z + "-" + a)
+                            IndexRequestBuilder indexRequest = client.prepareIndex(indexName + "-" + x + "-" + z, "test").setId(x + "-" + z + "-" + a)
                                     .setSource(json, XContentType.JSON);
                             bulkRequest.add(indexRequest);
-                            logger.debug(x + "-" + z + "-" + a);
+                            logger.debug(indexName + "-" + x + "-" + z + "-" + a);
                         }
                     }
                     BulkResponse bulkResponse = bulkRequest.get();

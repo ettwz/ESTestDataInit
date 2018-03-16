@@ -31,6 +31,9 @@ public class ElasticsearchProperties {
     @Value("${es.jsonNum}")
     private Integer jsonNum;
 
+    @Value("${es.indexName}")
+    private String indexName;
+
     public String getName() {
         return name;
     }
@@ -77,5 +80,13 @@ public class ElasticsearchProperties {
 
     public void setJsonNum(Integer jsonNum) {
         this.jsonNum = jsonNum;
+    }
+
+    public String getIndexName() {
+        return indexName;
+    }
+
+    public void setIndexName(String indexName) {
+        this.indexName = indexName;
     }
 }

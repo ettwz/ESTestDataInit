@@ -28,7 +28,8 @@ public class TestController {
                 elasticsearchProperties.getPort(),
                 elasticsearchProperties.getExecuteNum(),
                 elasticsearchProperties.getIndexNum(),
-                elasticsearchProperties.getJsonNum());
+                elasticsearchProperties.getJsonNum(),
+                elasticsearchProperties.getIndexName());
 
         return "sent ";
     }
